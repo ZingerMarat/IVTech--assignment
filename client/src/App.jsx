@@ -6,23 +6,7 @@ import { useSelector } from "react-redux"
 import Navbar from "./components/Navbar.jsx"
 import CreateQuestion from "./pages/CreateQuestion.jsx"
 import ViewQuestions from "./pages/ViewQuestions.jsx"
-
-function Home() {
-  const user = useSelector((state) => state.user)
-  return (
-    <div>
-      {user ? (
-        <div>
-          <div>Nickname: {user.nickname}</div>
-          <div>Full Name: {user.fullName}</div>
-          <div>Email: {user.email}</div>
-        </div>
-      ) : (
-        <div>No user info</div>
-      )}
-    </div>
-  )
-}
+import Home from "./pages/Home.jsx"
 
 export default function App() {
   const user = useSelector((state) => state.user)
@@ -36,14 +20,6 @@ export default function App() {
           element={
             <ProtectedRoute>
               <Home />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/create"
-          element={
-            <ProtectedRoute>
-              <CreateQuestion />
             </ProtectedRoute>
           }
         />

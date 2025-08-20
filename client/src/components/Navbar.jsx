@@ -10,9 +10,6 @@ export default function Navbar() {
       <Link to="/" className="text-blue-600 hover:underline">
         Home
       </Link>
-      <Link to="/create" className="text-blue-600 hover:underline">
-        Create Question
-      </Link>
       <Link to="/questions" className="text-blue-600 hover:underline">
         View Questions
       </Link>
