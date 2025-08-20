@@ -1,8 +1,7 @@
-// seedUsers.js
 import mongoose from "mongoose"
 import crypto from "crypto"
 import dotenv from "dotenv"
-import { User } from "../routes/auth.js"
+import User from "../models/User.js"
 
 dotenv.config()
 

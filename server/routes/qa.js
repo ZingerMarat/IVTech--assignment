@@ -3,34 +3,6 @@ import { verifyToken } from "./auth.js"
 
 const router = express.Router()
 
-const questions = [
-  {
-    id: 1,
-    authorEmail: "john@example.com",
-    authorNickname: "johnny",
-    title: "Как работает замыкание в JS?",
-    body: "Поясните простыми словами...",
-    tags: ["javascript"],
-    createdAt: Date.now(),
-  },
-]
-
-const answers = [
-  {
-    id: 1,
-    questionId: 1,
-    authorEmail: "sally@example.com",
-    authorNickname: "sally",
-    body: "Замыкание — это...",
-    createdAt: Date.now(),
-  },
-]
-
-let qId = 2
-let aId = 2
-const nextQId = () => qId++
-const nextAId = () => aId++
-
 function createQuestion({ authorEmail, authorNickname, title, body, tags }) {
   const q = {
     id: nextQId(),
