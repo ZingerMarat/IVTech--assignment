@@ -1,7 +1,16 @@
 import express from "express"
 import cors from "cors"
-import authRoutes from "./auth.js"
-import qaRoutes from "./qa.js"
+import authRoutes from "./routes/auth.js"
+import qaRoutes from "./routes/qa.js"
+
+import mongoose from "mongoose"
+import dotenv from "dotenv"
+dotenv.config()
+
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("DB connected"))
+  .catch((err) => console.log("DB not connected:", err.message))
 
 const app = express()
 app.use(express.json())
