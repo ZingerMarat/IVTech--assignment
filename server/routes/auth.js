@@ -4,6 +4,9 @@ import crypto from "crypto"
 import mongoose from "mongoose"
 import User from "../models/User.js"
 
+import dotenv from "dotenv"
+dotenv.config()
+
 const router = express.Router()
 
 const JWT_SECRET = process.env.JWT_SECRET
@@ -42,6 +45,8 @@ router.post("/login", async (req, res) => {
     const token = jwt.sign({ email: user.email, nickname: user.nickname }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN })
     res.json({ token })
   } catch (err) {
+    console.log(err)
+
     res.status(500).json({ error: "Login failed" })
   }
 })

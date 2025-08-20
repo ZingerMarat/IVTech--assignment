@@ -19,7 +19,7 @@ export default function ViewQuestions() {
           setAllQuestions(res.data)
         }
       } catch (err) {
-        console.error("Error creating question:", err)
+        console.error("Fetch question error:", err)
       } finally {
         setLoading(false)
       }
@@ -30,7 +30,7 @@ export default function ViewQuestions() {
   return (
     <div className="p-6 space-y-4">
       {loading && <p>Loading...</p>}
-      {allQuestions && allQuestions.map((q) => <Question key={q.id} question={q} />)}
+      {allQuestions && allQuestions.map((q) => <Question key={q._id} question={q} />)}
     </div>
   )
 }

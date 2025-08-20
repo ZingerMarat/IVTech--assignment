@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import Comments from "./Comments.jsx"
+import Answers from "./Answers.jsx"
 
 const Question = ({ question }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -22,7 +22,7 @@ const Question = ({ question }) => {
         ))}
       </div>
 
-      {isOpen && <Comments questionId={question.id} />}
+      {isOpen && <Answers questionId={question._id} />}
     </div>
   )
 }

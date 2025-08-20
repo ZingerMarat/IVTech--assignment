@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import axios from "axios"
 import { useSelector } from "react-redux"
 
-const Comments = ({ questionId }) => {
+const Answers = ({ questionId }) => {
   const [answers, setAnswers] = useState([])
   const [newAnswer, setNewAnswer] = useState("")
   const token = useSelector((state) => state.token)
@@ -19,13 +19,14 @@ const Comments = ({ questionId }) => {
           headers: { Authorization: `Bearer ${token}` },
         }
       )
-      setAnswers((prev) => [...prev, res.data])
-      setNewAnswer("")
+
+      if (res.status === 200) {
+        setAnswers((prev) => [...prev, res.data])
+        setNewAnswer("")
+      }
     } catch (e) {
       console.log(e.message)
     }
-
-    setNewAnswer("")
   }
 
   useEffect(() => {
@@ -49,7 +50,7 @@ const Comments = ({ questionId }) => {
       {answers.length ? (
         <ul className="list-disc pl-5 space-y-1">
           {answers.map((a) => (
-            <div key={a.id} className="border rounded-md p-3 bg-gray-50 shadow-sm">
+            <div key={a._id} className="border rounded-md p-3 bg-gray-50 shadow-sm">
               <div className="text-sm text-gray-600 mb-1">
                 <span className="font-medium">{a.authorNickname}</span> say(s):
               </div>
@@ -76,4 +77,4 @@ const Comments = ({ questionId }) => {
   )
 }
 
-export default Comments
+export default Answers
