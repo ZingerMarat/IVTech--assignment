@@ -7,7 +7,6 @@ const router = express.Router()
 
 router.get("/getQuestions", verifyToken, async (req, res) => {
   const questions = await Question.find()
-  console.log(questions)
 
   res.json(questions)
 })
