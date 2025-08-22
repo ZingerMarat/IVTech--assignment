@@ -16,19 +16,24 @@ export default function ProtectedRoute({ children }) {
       dispatch(setUser(null))
       return
     }
+
     axios
       .get("http://localhost:3001/userInfo", {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { authorization: `Bearer ${token}` },
       })
       .then((res) => {
         dispatch(setUser(res.data))
         setValid(true)
       })
-      .catch(() => {
-        dispatch(setUser(null))
-        setValid(false)
+      .catch((err) => {
+        if (err.response?.status === 401) {
+          dispatch(setUser(null))
+          setValid(false)
+        } else {
+          console.error("Network/server error:", err)
+        }
       })
-  }, [token, dispatch])
+  }, [token])
 
   if (valid === false) {
     return <Navigate to="/login" replace state={{ from: location }} />
