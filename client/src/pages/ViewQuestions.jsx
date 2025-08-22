@@ -25,7 +25,7 @@ export default function ViewQuestions() {
     }
 
     fetchQuestions()
-  }, [token])
+  }, [])
 
   return (
     <div className="p-6 space-y-4">

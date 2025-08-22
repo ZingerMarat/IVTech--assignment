@@ -13,7 +13,6 @@ export const getQuestions = async (req, res) => {
   }
 }
 
-//router.post("/createQuestion", verifyToken, async (req, res) => {
 export const createQuestion = async (req, res) => {
   try {
     const { title, body, tags } = req.body

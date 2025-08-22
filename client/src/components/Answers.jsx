@@ -5,8 +5,8 @@ import { useSelector } from "react-redux"
 const Answers = ({ questionId }) => {
   const [answers, setAnswers] = useState([])
   const [newAnswer, setNewAnswer] = useState("")
+  const [loading, setLoading] = useState(false)
   const token = useSelector((state) => state.token)
-  const user = useSelector((state) => state.user)
 
   const addAnswer = async (e) => {
     e.preventDefault()
@@ -31,13 +31,16 @@ const Answers = ({ questionId }) => {
 
   useEffect(() => {
     const fetchAnswers = async () => {
+      setLoading(true)
       try {
         const res = await axios.get(`http://localhost:3001/getQuestionAnswers/${questionId}`, {
           headers: { Authorization: `Bearer ${token}` },
         })
         setAnswers(res.data)
-      } catch (e) {
-        console.log(e.message)
+      } catch (error) {
+        console.log(error.message)
+      } finally {
+        setLoading(false)
       }
     }
 
@@ -47,6 +50,8 @@ const Answers = ({ questionId }) => {
   return (
     <div className="border-t pl-20 py-3 space-y-3">
       <h4 className="font-medium">Answers</h4>
+
+      {loading && <p>Loading answers...</p>}
 
       {answers.length ? (
         <ul className="list-disc pl-5 space-y-1">
