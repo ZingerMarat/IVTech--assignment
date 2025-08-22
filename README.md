@@ -33,7 +33,7 @@ A full-stack web application for user authentication, question creation, and ans
    ```
 2. Configure environment variables in `.env`:
    ```env
-   MONGO_URI=mongodb://localhost:27017/ivtech
+   MONGO_URI=your_mongo_url
    JWT_SECRET=your_jwt_secret
    ```
 3. Start MongoDB locally or use Atlas.
