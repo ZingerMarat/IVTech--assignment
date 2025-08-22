@@ -13,7 +13,9 @@ mongoose
   .catch((err) => console.log("DB not connected:", err.message))
 
 const app = express()
+
 app.use(express.json())
+
 app.use(
   cors({
     origin: "*",
