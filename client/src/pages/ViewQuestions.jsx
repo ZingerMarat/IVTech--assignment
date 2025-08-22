@@ -13,11 +13,10 @@ export default function ViewQuestions() {
       setLoading(true)
 
       try {
-        const res = await axios.get("http://localhost:3001/getQuestions", { headers: { Authorization: `Bearer ${token}` } })
-
-        if (res.status === 200) {
-          setAllQuestions(res.data)
-        }
+        const res = await axios.get("http://localhost:3001/getQuestions", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        setAllQuestions(res.data)
       } catch (err) {
         console.error("Fetch question error:", err)
       } finally {
@@ -27,6 +26,7 @@ export default function ViewQuestions() {
 
     fetchQuestions()
   }, [token])
+
   return (
     <div className="p-6 space-y-4">
       {loading && <p>Loading...</p>}

@@ -30,7 +30,7 @@ const Answers = ({ questionId }) => {
   }
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchAnswers = async () => {
       try {
         const res = await axios.get(`http://localhost:3001/getQuestionAnswers/${questionId}`, {
           headers: { Authorization: `Bearer ${token}` },
@@ -40,7 +40,8 @@ const Answers = ({ questionId }) => {
         console.log(e.message)
       }
     }
-    fetchData()
+
+    fetchAnswers()
   }, [questionId, token])
 
   return (
@@ -66,7 +67,12 @@ const Answers = ({ questionId }) => {
         <label htmlFor="newAnswer" className="block text-sm">
           Add your answer
         </label>
-        <textarea id="newAnswer" value={newAnswer} onChange={(e) => setNewAnswer(e.target.value)} className="w-full border rounded px-2 py-1 h-[60px]" />
+        <textarea
+          id="newAnswer"
+          value={newAnswer}
+          onChange={(e) => setNewAnswer(e.target.value)}
+          className="w-full border rounded px-2 py-1 h-[60px]"
+        />
         <div className="flex justify-end">
           <button type="submit" className=" px-3 py-1 rounded bg-blue-600 text-white text-sm">
             Submit

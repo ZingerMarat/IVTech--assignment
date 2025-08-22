@@ -1,14 +1,19 @@
 import express from "express"
-import { verifyToken } from "./auth.js"
+import { verifyToken } from "../middleware/auth.js"
 import Question from "../models/Question.js"
 import Answer from "../models/Answer.js"
 
 const router = express.Router()
 
 router.get("/getQuestions", verifyToken, async (req, res) => {
-  const questions = await Question.find()
+  try {
+    const questions = await Question.find()
 
-  res.json(questions)
+    res.json(questions)
+  } catch (err) {
+    console.error("Error fetching questions:", err)
+    return res.status(500).json({ error: "Internal server error" })
+  }
 })
 
 router.post("/createQuestion", verifyToken, async (req, res) => {

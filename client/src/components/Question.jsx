@@ -3,6 +3,7 @@ import Answers from "./Answers.jsx"
 
 const Question = ({ question }) => {
   const [isOpen, setIsOpen] = useState(false)
+
   return (
     <div className="border rounded-md p-4 shadow-sm bg-white space-y-2">
       <h3
